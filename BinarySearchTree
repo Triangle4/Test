@@ -1,0 +1,100 @@
+
+# Non-Binary Tree - A tree in which each node may have more than 2 children
+# Binary Tree - A tree in which each node has at most 2 children
+# Binary Search Tree - 
+# Any node that has more than one child, is a subtree
+# A leaf is any node with no children
+# There is one root, and many subroots
+# The main property of a binary search tree must have 2 or less nodes.
+# To remove an element we need to first locate the element
+# The first item will always be your main root
+# The order of arrival is un predictable
+
+class BinaryNode:
+    def __init__(self):
+        self.order = "asc"
+        self.value = 0
+        self.left = 0 # Always a value less than the parent
+        self.right = 0 # Always a value greater or equal than the parent
+
+    def Search(self, value):
+        if(value == self.value): return True
+        if(value < self.value):
+            return self.left.Search(value)
+        elif(value > self.value):
+            return self.right.Search(value)
+        return False
+        
+    def Insert(self, value):
+        if(self.value == value):
+            self.value = value
+        else:
+            if(value >= self.value):
+                if(self.left == 0):
+                    self.left = BinaryNode()
+                    self.left.value = value
+                else:
+                    self.left.Insert(value)
+            elif (value < self.value):
+                if(self.right == 0):
+                    self.right = BinaryNode()
+                    self.right.value = value
+                else:
+                    self.right.Insert(value)
+    
+    def Print(self):
+        if(self.order == "des"):
+            if(self.left != 0):
+                self.left.Print()
+            print(self.value)
+            if(self.right != 0):
+                self.right.Print()
+        else:
+            if(self.right != 0):
+                self.right.Print()
+            print(self.value)
+            if(self.left != 0):
+                self.left.Print()
+    
+    def Remove(self):
+        print("Remove")
+        
+
+class BinaryTree:
+    def __init__(self):
+        self.root = 0
+    def Search(self, value):
+        if(value < self.root.value):
+            self.root.Search(value)
+        else:
+            self.root.Search(value)
+    def Insert(self, value):
+        if(self.root == 0):
+            self.root = BinaryNode()
+            self.root.value = value
+        else:
+            if(value >= self.root.value):
+                self.root.Insert(value)
+            elif (value < self.root.value):
+                self.root.Insert(value)
+    def InsertRandom(self):
+        import random
+        value = random.randint(0, 20)
+        self.Insert(value)
+    def Print(self):
+        if(self.root):
+            self.root.Print()
+        
+bst = BinaryTree()
+
+bst.Insert(57)
+bst.Insert(23)
+bst.Insert(970)
+bst.Insert(86)
+bst.Insert(3.05)
+# for i in range(0, 20):
+#     bst.InsertRandom()
+
+bst.Print()
+
+
